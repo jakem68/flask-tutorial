@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/sirris.jpg') }}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <!-- <script>window.jQuery || document.write('<script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}">\x3C/script>')</script> -->
+  <script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}"></script>
+
+  <title>First button page</title>
+</head>
+
+<body>
+
+  <p>Hello from {{ ip_address }}</p>
+  <div class="container">
+    <form action="/" method="get">
+      <!-- or method="post" -->
+      <input type="submit" value="Click Me Back">
+    </form>
+    <form method="post">
+      <!-- or method="post" -->
+      <label for="counter">Count untill </label>
+      <input name="counter" id="counter" required>
+      <input type="submit" value="Start counting">
+    </form>
+    <p>counting {{ ctr }}</p>
+
+  </div>
+
+
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+
+</body>
+
+</html>

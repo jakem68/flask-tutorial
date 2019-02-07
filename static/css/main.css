@@ -1,0 +1,80 @@
+*{
+    margin:10px;
+    padding:5px;
+}
+h1{
+    font: bold 25px Helvetica;
+}
+h2{
+    font: bold 19px Helvetica;
+}
+h3{
+    font: bold 14px Helvetica;
+}
+body{
+    background-color: lightgrey; 
+    width: 100%;
+
+}
+div.container{
+    background-color: grey;
+    max-width: 300px;
+    margin: 0px auto;
+}
+form{
+  background-color: red;
+  padding:10px;
+}
+input[type=button]{
+  background-color: white;
+  background-image: url('/static/images/click.svg');
+  background-position: 10px 10px; 
+  background-size: 80px;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100%;
+  margin: 0px auto;
+  text-align: left;
+  text-indent: 100px;
+  font: 25px Helvetica;
+}
+  input[type=rebootbutton]{
+  background-color: white;
+  background-image: url('/static/images/reboot.svg');
+  background-position: 10px 10px; 
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: 0px auto;
+  height: 100px;
+  width: 100%;
+  margin: 0px auto;
+  text-align: left;
+  text-indent: 100px;
+  font: 25px Helvetica;
+}
+  input[type=poweroffbutton]{
+  background-color: white;
+  background-image: url('/static/images/powerbutton.svg');
+  background-position: 10px 10px; 
+  background-size: 80px;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100%;
+  margin: 0px auto;
+  text-align: left;
+  text-indent: 100px;
+  font: 25px Helvetica;
+}
+input[type=submit]{
+    background-color: white;
+    /* background-image: url('/static/images/powerbutton.svg');
+    background-position: 10px 10px; 
+    background-size: 80px;
+    background-repeat: no-repeat; */
+    height: 100px;
+    width: 100%;
+    margin: 0px auto;
+    text-align: center;
+    font: 25px Helvetica;
+  }
+  

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/sirris.jpg') }}">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <!-- <script>window.jQuery || document.write('<script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}">\x3C/script>')</script> -->
+  <script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}"></script>
+  
+  <title>Welcome page</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Landing page!</h1>
+    <h2>This is the landing page.</h2>
+    <form action="/hello" method="get">
+      <!-- or method="post" -->
+      <input type="submit" value="Click">
+    </form>
+
+    <form action="/reboot" method="get">
+      <!-- or method="post" -->
+      <input type="submit" value="Reboot">
+    </form>
+
+    <form action="/shutdown" method="get">
+      <!-- or method="post" -->
+      <input type="submit" value="Shutdown">
+    </form>
+  </div>
+
+<p></p>
+
+  <div class="container">
+    <h1>jQuery Example</h1>
+  <p><input type=text size=5 name=a> +
+     <input type=text size=5 name=b> =
+     <span id=result>?</span>
+  <p><a href=# id=calculate>calculate server side</a>
+  </div>
+
+
+  <script type=text/javascript> $SCRIPT_ROOT={{ request.script_root|tojson|safe }} ; </script> 
+  <script type=text/javascript>
+    $(function() { 
+      $('a#calculate').bind('click', function() {
+        $.getJSON($SCRIPT_ROOT + '/_add_numbers' , { a: $('input[name="a" ]').val(), b: $('input[name="b" ]').val() }, function(data) { 
+            $("#result").text(data.result); 
+          }); 
+        return false; 
+        }); 
+      }); 
+  </script> 
+  
+
+
+
+</body> 
+</html>
