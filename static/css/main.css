@@ -14,7 +14,6 @@ h3{
 body{
     background-color: lightgrey; 
     width: 100%;
-
 }
 div.container{
     background-color: grey;
@@ -22,8 +21,17 @@ div.container{
     margin: 0px auto;
 }
 form{
-  background-color: red;
   padding:10px;
+  background-color: lightgray;
+}
+.green{
+    background-color: green;
+}
+.orange{
+    background-color: orange;
+}
+.red{
+    background-color: red;
 }
 input[type=button]{
   background-color: white;
@@ -31,7 +39,7 @@ input[type=button]{
   background-position: 10px 10px; 
   background-size: 80px;
   background-repeat: no-repeat;
-  height: 100px;
+  height: 70px;
   width: 100%;
   margin: 0px auto;
   text-align: left;
@@ -71,7 +79,7 @@ input[type=submit]{
     background-position: 10px 10px; 
     background-size: 80px;
     background-repeat: no-repeat; */
-    height: 100px;
+    height: 70px;
     width: 100%;
     margin: 0px auto;
     text-align: center;
