@@ -17,14 +17,21 @@ def get_ip():
         ip_address = ': Sorry, no network available, so no IP address to show.'
     return ip_address
 
+def stream_template(template_name, **context):
+    # http://flask.pocoo.org/docs/patterns/streaming/#streaming-from-templates
+    app.update_template_context(context)
+    t = app.jinja_env.get_template(template_name)
+    rv = t.stream(context)
+    # uncomment if you don't need immediate reaction
+    ##rv.enable_buffering(5)
+    return rv
+
 @app.route('/_add_numbers')
 def add_numbers():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
     print("a = {}, b = {}". format(a, b))
     return jsonify(result=a + b)
-
-
 
 @app.route('/')
 def index():
@@ -33,20 +40,17 @@ def index():
 @app.route('/hello', methods=('GET', 'POST'))
 def hello():
     ip_address = get_ip()
-    ctr=0
+    # ctr=0
     if request.method == 'POST':
-        counter = int(request.form['counter'])
-        while counter > 1:
-            ctr += 1
-            counter -= 1
-            time.sleep(1)
-            render_template('hello.html', ip_address=ip_address, ctr=ctr)
-
+        def g():
+            counter = int(request.form['counter'])
+            for ctr in range(counter):
+                time.sleep(1)
+                yield str('counting {}'.format(ctr+1))
+        return Response(stream_template('hello.html', ip_address=ip_address, data=stream_with_context(g())))
+        
     else:
         return render_template('hello.html', ip_address=ip_address)
-    return render_template('hello.html', ip_address=ip_address)
-
-
 
 
 @app.route('/reboot')
