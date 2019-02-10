@@ -2,17 +2,21 @@
 
 from flask import Flask, stream_with_context, render_template, request, jsonify, Response
 import os, socket, time
-from subprocess import call
+from subprocess import call, Popen, PIPE
 
 app = Flask(__name__)
 
 def get_ip():
     ip_address = ''
     try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8",80))
-        ip_address = s.getsockname()[0]
-        s.close()
+        cmd="ifconfig | grep '192.168.0'| grep -A 1 '192.168.0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1"
+        stdout=Popen(cmd, shell=True, stdout=PIPE).stdout
+        ip_address=stdout.read()[:-1].decode("utf-8")
+
+        # s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # s.connect(("8.8.8.8",80))
+        # ip_address = s.getsockname()[0]
+        # s.close()
     except:
         ip_address = ': Sorry, no network available, so no IP address to show.'
     return ip_address
@@ -34,7 +38,8 @@ def add_numbers():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ip_address = get_ip()
+    return render_template('index.html', ip_address=ip_address)
 
 @app.route('/hello', methods=('GET', 'POST'))
 def hello():

@@ -11,6 +11,7 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <!-- <script>window.jQuery || document.write('<script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}">\x3C/script>')</script> -->
   <script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}"></script>
+  <script src="{{url_for('static', filename='vendors/qrcodejs/qrcode.min.js') }}"></script>
   
   <title>Welcome page</title>
 </head>
@@ -35,6 +36,9 @@
       <input type="submit" value="Shutdown">
     </form>
   </div>
+
+  <div id="qrcode"></div>
+  <div id="qrcode_text"></div>
 
 <p></p>
 
@@ -67,8 +71,21 @@
       var result = a + b;
       document.getElementById("result").innerHTML=result;
     }
+
+    $("#qrcode_text").text("{{ ip_address }}:5000/shutdown");
+
   </script> 
-  
+    <script type="text/javascript">
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "{{ ip_address}}:5000/hello",
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+      </script>
+        
 
 
 
