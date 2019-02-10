@@ -23,6 +23,8 @@ div.container{
 form{
   padding:10px;
   background-color: lightgray;
+  text-align: center
+
 }
 .green{
     background-color: green;
@@ -85,4 +87,4 @@ input[type=submit]{
     text-align: center;
     font: 25px Helvetica;
   }
-  
+    

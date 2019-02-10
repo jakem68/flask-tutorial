@@ -41,7 +41,7 @@ def index():
     ip_address = get_ip()
     return render_template('index.html', ip_address=ip_address)
 
-@app.route('/hello', methods=('GET', 'POST'))
+@app.route('/demos', methods=('GET', 'POST'))
 def hello():
     ip_address = get_ip()
     # ctr=0
@@ -50,11 +50,11 @@ def hello():
             counter = int(request.form['counter'])
             for ctr in range(counter):
                 time.sleep(1)
-                yield str('counting {}'.format(ctr+1))
-        return Response(stream_template('hello.html', ip_address=ip_address, data=stream_with_context(g())))
+                yield str('{}'.format(ctr+1))
+        return Response(stream_template('demos.html', ip_address=ip_address, data=stream_with_context(g())))
         
     else:
-        return render_template('hello.html', ip_address=ip_address)
+        return render_template('demos.html', ip_address=ip_address)
 
 
 @app.route('/reboot')

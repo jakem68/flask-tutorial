@@ -10,38 +10,61 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
   <!-- <script>window.jQuery || document.write('<script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}">\x3C/script>')</script> -->
   <script src="{{url_for('static', filename='vendors/jquery/jquery-3.3.1.js') }}"></script>
+  <script src="{{url_for('static', filename='vendors/qrcodejs/qrcode.min.js') }}"></script>
+
 
 <title>First button page</title>
 </head>
 
 <body>
 
-  <p>Hello from {{ ip_address }}</p>
   <div class="container">
+    <p>Hello from {{ ip_address }}</p>
     <form class="green" action="/" method="get">
       <!-- or method="post" -->
       <input type="submit" value="Click Me Back">
     </form>
     <form class="green" method="post">
       <!-- or method="post" -->
-      <label for="counter">Count untill </label>
-      <input name="counter" id="counter" required>
+      <div class="form-group">
+        <label for="counter">Count untill </label>
+        <input name="counter" id="counter" size="5" required>
+      </div>
       <input type="submit" value="Start counting">
+      <div id="ctr">ready to start counting.</div>
     </form>
-    <div id="ctr">ready to count</div>
+    <form class="green">
+      <div align="center" id="qrcode"></div>
+      <div id="qrcode_text"></div>
+    </form>
+  
 
   </div>
-
-
-  {% for c in data: %}
-<script>
-  $("#ctr").text("{{ c }}")
-</script>
-{% endfor %}
   
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
+
+<script>
+  $("#qrcode_text").text("{{ ip_address }}:5000/shutdown");
+</script>
+
+<script type="text/javascript">
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: "{{ ip_address }}:5000",
+    width: 128,
+    height: 128,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+</script>
+
+{% for c in data: %}
+<script>
+  $("#ctr").text("counting on server side: {{ c }}")
+</script>
+{% endfor %}
 
 </body>
 
