@@ -2,7 +2,7 @@
 
 The first function in a code block in markdown
 
-'''python
+```python
 from flask import Flask, stream_with_context, render_template, request, jsonify, Response
 import os, socket, time
 from subprocess import call, Popen, PIPE
@@ -23,4 +23,4 @@ def get_ip():
     except:
         ip_address = ': Sorry, no network available, so no IP address to show.'
     return ip_address
-    '''
+    ```
