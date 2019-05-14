@@ -1,3 +1,3 @@
 # My notes testing a Flask tutorial.
 
-  [README](README)
+  [README](docs/README.md)
