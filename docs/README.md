@@ -24,3 +24,5 @@ def get_ip():
         ip_address = ': Sorry, no network available, so no IP address to show.'
     return ip_address
     ```
+
+why
