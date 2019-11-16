@@ -3,6 +3,7 @@
 from flask import Flask, stream_with_context, render_template, request, jsonify, Response
 import os, socket, time
 from subprocess import call, Popen, PIPE
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -44,17 +45,22 @@ def index():
 @app.route('/demos', methods=('GET', 'POST'))
 def hello():
     ip_address = get_ip()
-    # ctr=0
+    def f():
+        while True:
+            now = datetime.now().strftime("%Y.%m.%d|%H:%M:%S")
+            yield str('{}'.format(now))
+            time.sleep(1)
     if request.method == 'POST':
         def g():
             counter = int(request.form['counter'])
             for ctr in range(counter):
                 time.sleep(1)
                 yield str('{}'.format(ctr+1))
-        return Response(stream_template('demos.html', ip_address=ip_address, data=stream_with_context(g())))
+        return Response(stream_template('demos.html', ip_address=ip_address, data=stream_with_context(g()), data_cont=stream_with_context(f())))
         
     else:
-        return render_template('demos.html', ip_address=ip_address)
+        return Response(stream_template('demos.html', ip_address=ip_address, data_cont=stream_with_context(f())))
+#        return render_template('demos.html', ip_address=ip_address)
 
 
 @app.route('/reboot')

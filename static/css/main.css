@@ -14,13 +14,35 @@ h3{
 body{
     background-color: lightgrey; 
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 div.container{
     background-color: grey;
-    max-width: 300px;
+    max-width: 600px;
     margin: 0px auto;
 }
-form{
+
+.grid-container-left { grid-area: left; }
+.grid-container-right { grid-area: right; }
+.grid-container {
+    display: grid;
+    grid-template:
+      'left right';
+    grid-gap: 5px;
+    background-color: darkslategrey;
+    padding: 10px;
+    max-width: 800px;
+    margin: 0px auto;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+  }
+  
+  form{
   padding:10px;
   background-color: lightgray;
   text-align: center
